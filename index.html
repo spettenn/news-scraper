@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./style.css" />
+
+		<title>scraper</title>
+	</head>
+	<body>
+		Shaloom
+		<div id="scraped-data"></div>
+
+		<!-- <button onclick="fetchData()">Get data</button>
+
+		<script>
+			async function fetchData() {
+				const response = await fetch('http://localhost:8080/db.js');
+				const data = await response.json();
+				console.log(data);
+			}
+		</script> -->
+
+		<script type="module" src="./server.js"></script>
+		<script type="module" src="./vg.js"></script>
+		<script type="module" src="./db.js"></script>
+		<script type="module" src="./na.js"></script>
+	</body>
+</html>
