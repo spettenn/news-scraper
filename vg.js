@@ -1,23 +1,28 @@
+const express = require('express');
+const axios = require('axios');
 const cheerio = require('cheerio');
-const puppeteer = require('puppeteer');
-let scraped_headlines = [];
-(async () => {
-	const browser = await puppeteer.launch();
-	const page = await browser.newPage();
+const app = express();
+const port = process.env || 3000;
+const url = 'https://www.vg.no/';
+
+let headlines = [];
+
+const fetchVg = async () => {
 	try {
-		await page.goto('https://www.vg.no/', { timeout: 180000 });
-		let bodyHTML = await page.evaluate(() => document.body.innerHTML);
-		let $ = cheerio.load(bodyHTML);
-		let article_headlines = $(' article > div > a > div ');
-		article_headlines.each((index, element) => {
-			title = $(element).find('h3').text();
-			scraped_headlines.push({
-				title: title,
-			});
+		let res = await axios.get(url);
+		let $ = cheerio.load(res.data);
+		$('article > div > a > div').each((index, element) => {
+			headlines.push($(element).text().trim);
 		});
-	} catch (err) {
-		console.log(err);
+	} catch (error) {
+		console.log(error);
 	}
-	await browser.close();
-	console.log(scraped_headlines);
-})();
+};
+
+app.get('/index.html', (req, res) => {
+	res.send('Hello World!');
+});
+
+app.listen(port, () => {
+	console.log(`Example app listening at http://localhost:${port}`);
+});

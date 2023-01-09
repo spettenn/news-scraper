@@ -24,7 +24,7 @@ async function scrapeData() {
 	await browser.close();
 }
 
-const button = document.getElementById('button');
+/* const button = document.getElementById('button');
 button.addEventListener('click', async () => {
 	const scrapedData = await scrapeData();
 	const scrapedDataElement = document.getElementById('scraped-data');
@@ -32,4 +32,4 @@ button.addEventListener('click', async () => {
 	scrapedData.forEach((data) => {
 		scrapedDataElement.innerHTML += `<p>${data.title}</p>`;
 	});
-});
+}); */
